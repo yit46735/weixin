@@ -28,6 +28,12 @@ class UserController extends WechatController {
 	}
 
 	public function my(){
+		if(!is_login()){
+			$this->error('未登录,请先登录',U('Wechat/User/login'));
+		}
+		$id=session('user_auth')['uid'];
+		$list=$model=D('member')->find($id);
+		$this->assign('list',$list);
 		$this->display();
 	}
 
@@ -52,7 +58,7 @@ class UserController extends WechatController {
 			$uid = $User->register($username, $password, $email);
 			if(0 < $uid){ //注册成功
 				//TODO: 发送验证邮件
-				$this->success('注册成功！',U('login'));
+				$this->success('注册成功！',U('Wechat/user/login'));
 			} else { //注册失败，显示错误信息
 				$this->error($this->showRegError($uid));
 			}
@@ -64,6 +70,13 @@ class UserController extends WechatController {
 
 	/* 登录页面 */
 	public function login($username = '', $password = '', $verify = ''){
+
+//		if(session('?a')==false){
+//
+//			$url=$_SERVER['HTTP_REFERER'];
+//			session('a',$url);
+//		}
+
 		if(IS_POST){ //登录验证
 			/* 检测验证码 */
 			if(!check_verify($verify)){
@@ -78,6 +91,7 @@ class UserController extends WechatController {
 				$Member = D('Member');
 				if($Member->login($uid)){ //登录用户
 					//TODO:跳转到登录前页面
+
 					$this->success('登录成功！',U('Wechat/User/my'));
 				} else {
 					$this->error($Member->getError());

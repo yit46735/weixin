@@ -50,15 +50,15 @@
                 <img src="/Public/Wechat/image/5.png" width="60" height="60" />
             </div>
             <div class="col-xs-9">
-                ZhangSan<br/>
-                北大花园小区<br/>
-                积分:<span class="text-danger">100</span>
+                <?php echo session('user_auth')['username']; ?><br/>
+                最后登录时间：<?php echo (time_format($list["last_login_time"])); ?><br/>
+                积分:<span class="text-danger"><?php echo ($list["score"]); ?></span>
             </div>
         </div>
         <div class="blank"></div>
         <div class="row text-center myLabel">
             <div class="col-xs-4 label-danger"><a href="#"><span class="iconfont">&#xe60b;</span>我的资料</a></div>
-            <div class="col-xs-4 label-success"><a href="#"><span class="iconfont">&#xe609;</span>我的报修</a></div>
+            <div class="col-xs-4 label-success"><a href="<?php echo U('Repaire/my');?>"><span class="iconfont">&#xe609;</span>我的报修</a></div>
             <div class="col-xs-4 label-primary"><a href="#"><span class="iconfont">&#xe606;</span>报名的活动</a></div>
         </div>
         <div class="blank"></div>
@@ -67,6 +67,7 @@
                 <li class="list-group-item"><a href="diaochawenjuan.html" class="text-danger"><span class="iconfont">&#xe60a;</span>我的缴费账单</a> </li>
                 <li class="list-group-item"><a href="yezhurenzheng.html" class="text-info"><span class="iconfont">&#xe608;</span>我的物业通知</a></li>
                 <li class="list-group-item"><a href="yezhurenzheng.html" class="text-info"><span class="iconfont">&#xe607;</span>我的水电气使用</a></li>
+                <li class="list-group-item"><a href="<?php echo U('User/logout');?>" class="text-danger"><span class="iconfont">&#xe60b;</span>退出登录</a> </li>
             </ul>
         </div>
     </div>

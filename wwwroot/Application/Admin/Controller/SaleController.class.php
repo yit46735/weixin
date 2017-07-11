@@ -35,8 +35,8 @@ class SaleController extends AdminController
             $id=$sale->add($data);
             if($id){
                 $this->success('新增成功', U('index'));
-            } else {
-                $this->error('新增失败');
+            } else { $this->error('新增失败');
+
             }
         }else {
             $this->error($sale->getError());

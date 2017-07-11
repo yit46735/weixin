@@ -22,6 +22,9 @@ define ('APP_DEBUG', true );
 define ( 'APP_PATH', './Application/' );
 
 define('HTML_PATH', './HTML/');
+
+define ( 'ROOT_PATH', dirname($_SERVER['SCRIPT_FILENAME'])."/" );
+
 /*
 if(!is_file(APP_PATH . 'User/Conf/config.php')){
 	header('Location: ./install.php');
